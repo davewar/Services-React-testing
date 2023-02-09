@@ -37,7 +37,7 @@ const Services = () => {
 							</div>
 						</div>
 						<div className='services-text'>
-							<ul>
+							<ul className='excel-ul'>
 								<li>Design and creation of spreadsheet business tools</li>
 								<li>Templates and Reports</li>
 								<li>Complex formulas and functions</li>

@@ -8,3 +8,25 @@ Await		    no	    YES	    no		        no	        YES	        no
 
 
 
+toBeDisabled
+toBeEnabled
+toBeEmpty
+toBeEmptyDOMElement
+toBeInTheDocument
+toBeInvalid
+toBeRequired
+toBeValid
+toBeVisible
+toContainElement
+toContainHTML
+toHaveAttribute
+toHaveClass
+toHaveFocus
+toHaveFormValues
+toHaveStyle
+toHaveTextContent
+toHaveValue
+toHaveDisplayValue
+toBeChecked
+toBePartiallyChecked
+toHaveDescription

@@ -12,6 +12,8 @@ const useFetch = () => {
 			const res = await fetch(`${baseUrl}${url}`, options);
 			const data = await res.json();
 
+			console.log('GGGGGGGGGGGG', data);
+
 			if (data.errors) {
 				setError(data.errors);
 				setLoading(true);

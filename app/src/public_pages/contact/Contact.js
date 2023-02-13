@@ -75,19 +75,26 @@ const Contact = () => {
 				},
 			};
 
-			customFetch(url, options);
-			// console.log(data);
+			let baseUrl = process.env.REACT_APP_BACKEND_URL;
+
+			const res = await fetch(`${baseUrl}${url}`, options);
+			const data = await res.json();
+			// customFetch(url, options);
+			console.log('dw', data);
 			// console.log('ISERROR', isError);
 
-			if (isError) {
-				setSignInErr(isError);
-			} else if (data.msg) {
+			if (data.msg) {
+				console.log('here');
 				setSuccess(data.msg);
 				setName('');
 				setEmail('');
 				setComment('');
 			} else if (data.errors) {
 				setSignInErr(data.errors);
+				console.log('here1');
+			} else {
+				setSignInErr(data.errors);
+				console.log('here2');
 			}
 		}
 	};
@@ -115,7 +122,7 @@ const Contact = () => {
 
 				{success && (
 					<div className='alert alert-success text-center'>
-						<span className='text-success text-capitalize'>{success}</span>
+						<p className='text-success text-capitalize'>{success}</p>
 					</div>
 				)}
 
@@ -148,7 +155,7 @@ const Contact = () => {
 								</label>
 								<input
 									type='email'
-									name='comment'
+									name='email'
 									className='form-control'
 									id='email'
 									onChange={(e) => handleChange(e, 'email')}
@@ -169,6 +176,7 @@ const Contact = () => {
 									autoComplete='off'
 									value={comment}
 									onChange={(e) => handleChange(e, 'comment')}
+									data-testid='custom-element'
 								></textarea>
 								{commentErr && (
 									<small className='text-danger'>{commentErr}</small>

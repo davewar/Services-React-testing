@@ -6,14 +6,7 @@ import user from '@testing-library/user-event';
 import { rest } from 'msw';
 import { server } from '../../mocks/server';
 
-// import { rest } from 'msw';
-// import { server } from '../../mocks/server';
-
-import '@testing-library/jest-dom';
-
-// 	return res(
-// 			ctx.status(401),
-// 			ctx.json({ errors: 'All form fields are required. Please try again'})
+// import { expect, jest, test } from '@jest/globals';
 
 const MockContact = () => {
 	return (
@@ -86,7 +79,7 @@ describe('Contact', () => {
 		expect(nameInput).toHaveValue('dave w');
 		expect(
 			screen.queryByText('Name must be at least 3 characters!')
-		).toBeNull();
+		).toBeNull(); // eslint-disable-line
 
 		await user.tab();
 		expect(emailInput).toHaveFocus();
@@ -139,6 +132,7 @@ describe('Contact', () => {
 		);
 
 		expect(resData).toBeVisible();
+		expect(resData).toHaveClass('text-success text-capitalize');
 
 		// state values should be clear
 		expect(emailInput).toHaveValue('');
@@ -147,7 +141,7 @@ describe('Contact', () => {
 	});
 });
 
-describe.only('Contact form error message', () => {
+describe('Contact form error message', () => {
 	test('Component renders correctly', async () => {
 		// send error
 		server.use(
@@ -196,12 +190,26 @@ describe.only('Contact form error message', () => {
 			expect(await findErrMessage()).toBeInTheDocument();
 		});
 
-		// state values should NOT be cleared
-		expect(nameInput).toHaveValue('Steve Davis');
+		// expect(findErrMessage()).toHaveTextContent(
+		// 	'All form fields are required. Please try again'
+		// );
+
+		let item = screen.getByText(
+			'All form fields are required. Please try again',
+			{
+				exact: false,
+			}
+		);
+
+		expect(item).toBeInTheDocument();
+		expect(item).toBeVisible();
+		expect(item).toHaveClass('text-danger text-capitalize');
+		expect(item)
+			// state values should NOT be cleared
+			.expect(nameInput)
+			.toHaveValue('Steve Davis');
 		expect(emailInput).toHaveValue('SteveDavis@blahblah.com');
 		expect(tAreaInput).toHaveValue('blah.................');
-
-		// screen.debug();
 	});
 });
 

@@ -12,7 +12,7 @@ const MockServices = () => {
 	);
 };
 
-describe.skip('Services', () => {
+describe('Services', () => {
 	test('Component renders correctly', () => {
 		render(<MockServices />);
 

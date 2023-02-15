@@ -80,21 +80,18 @@ const Contact = () => {
 			const res = await fetch(`${baseUrl}${url}`, options);
 			const data = await res.json();
 			// customFetch(url, options);
-			console.log('dw', data);
+			// console.log('dw', data);
 			// console.log('ISERROR', isError);
 
 			if (data.msg) {
-				console.log('here');
 				setSuccess(data.msg);
 				setName('');
 				setEmail('');
 				setComment('');
 			} else if (data.errors) {
 				setSignInErr(data.errors);
-				console.log('here1');
 			} else {
 				setSignInErr(data.errors);
-				console.log('here2');
 			}
 		}
 	};
@@ -122,7 +119,7 @@ const Contact = () => {
 
 				{success && (
 					<div className='alert alert-success text-center'>
-						<p className='text-success text-capitalize'>{success}</p>
+						<span className='text-success text-capitalize'>{success}</span>
 					</div>
 				)}
 

@@ -3,7 +3,7 @@ import Home from './Home';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
 
-import '@testing-library/jest-dom';
+// import '@testing-library/jest-dom';
 
 const MockHome = () => {
 	return (
@@ -13,7 +13,7 @@ const MockHome = () => {
 	);
 };
 
-describe.skip('Home', () => {
+describe('Home', () => {
 	test('Component renders correctly', async () => {
 		user.setup();
 		render(<MockHome />);

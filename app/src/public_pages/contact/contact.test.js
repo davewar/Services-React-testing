@@ -204,10 +204,9 @@ describe('Contact form error message', () => {
 		expect(item).toBeInTheDocument();
 		expect(item).toBeVisible();
 		expect(item).toHaveClass('text-danger text-capitalize');
-		expect(item)
-			// state values should NOT be cleared
-			.expect(nameInput)
-			.toHaveValue('Steve Davis');
+
+		// state values should NOT be cleared
+		expect(nameInput).toHaveValue('Steve Davis');
 		expect(emailInput).toHaveValue('SteveDavis@blahblah.com');
 		expect(tAreaInput).toHaveValue('blah.................');
 	});

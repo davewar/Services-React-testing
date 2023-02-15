@@ -36,7 +36,7 @@ toBeChecked
 toBePartiallyChecked
 toHaveErrorMessage
 
-Download the chrome plyground extension or use https://testing-playground.com/ : easier to find html items
+Download the chrome playground extension or use https://testing-playground.com/ : easier to find html items
 
 https://testing-library.com/docs/ecosystem-user-event
 

@@ -183,6 +183,8 @@ describe('Contact form error message', () => {
 			name: /submit/i,
 		});
 
+		expect(submitBtn).toHaveAttribute('type', 'submit');
+
 		// post to 'api/email'
 		await user.click(submitBtn);
 

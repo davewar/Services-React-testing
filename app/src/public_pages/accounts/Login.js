@@ -78,10 +78,12 @@ const Login = () => {
 					localStorage.setItem('firstlogin', true);
 					setAccessToken(data.accesstoken);
 					setRole(data.user.role);
+					console.log('HERE data user');
 
 					navigate('../dashboard');
 				} else if (data.errors) {
 					setSignInErr(data.errors);
+					console.log('HEREEEEE data error');
 				}
 			} catch (err) {
 				console.log('dw error message login:', err.message);

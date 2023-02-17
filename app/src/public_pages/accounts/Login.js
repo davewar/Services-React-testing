@@ -58,11 +58,16 @@ const Login = () => {
 	const handleSignin = async (e) => {
 		e.preventDefault();
 
+		let baseUrl = process.env.REACT_APP_BACKEND_URL;
+
 		if (email && password && !emailErr && !passwordErr) {
 			setSignInErr('');
 
+			console.log('heheheee 1111888888888888');
+
 			try {
-				const res = await fetch('/user/login', {
+				const res = await fetch(`${baseUrl}/user/login`, {
+					// const res = await fetch('/user/login', {
 					method: 'POST',
 					body: JSON.stringify({ email, password }),
 					headers: {
@@ -71,13 +76,15 @@ const Login = () => {
 					},
 				});
 
+				console.log('heheheee 1111');
 				const data = await res.json();
-				// console.log(data);
+				console.log('heheheee 2222');
+				console.log('DW DATA', data);
 
-				if (data.user) {
+				if (data.msg) {
 					localStorage.setItem('firstlogin', true);
-					setAccessToken(data.accesstoken);
-					setRole(data.user.role);
+					setAccessToken(data.msg.accesstoken);
+					setRole(data.msg.user.role);
 					console.log('HERE data user');
 
 					navigate('../dashboard');
@@ -88,6 +95,7 @@ const Login = () => {
 			} catch (err) {
 				console.log('dw error message login:', err.message);
 				setSignInErr('No Server Response');
+				console.log('HERE data user2');
 			}
 		}
 	};

@@ -136,10 +136,17 @@ module.exports.login_post = async (req, res) => {
 			maxAge: 1 * 24 * 60 * 60 * 1000,
 		});
 
-		res.status(200).send({
-			accesstoken,
-			user: { id: user._id, name: user.name, role: user.role },
+		res.status(200).json({
+			msg: {
+				accesstoken,
+				user: { id: user._id, name: user.name, role: user.role },
+			},
 		});
+
+		// res.status(200).json({
+		// 	accesstoken,
+		// 	user: { id: user._id, name: user.name, role: user.role },
+		// });
 	} catch (err) {
 		res.status(400).json({ errors: err.message });
 	}

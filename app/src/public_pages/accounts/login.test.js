@@ -3,6 +3,8 @@ import Login from './Login';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
 
+import { TESTUSERS } from '../../mocks/data/users';
+
 import { rest } from 'msw';
 import { server } from '../../mocks/server';
 
@@ -27,20 +29,20 @@ describe.only('Login', () => {
 
 		render(<MockLogin />, { wrapper: UserProvider });
 
-		await user.type(getEmail(), 'jimmywhite@blahblah.com');
+		await user.type(getEmail(), TESTUSERS[0].email);
 		user.tab();
 		await user.type(getPasswordInput(), '123456789');
 		user.tab();
 
-		expect(getEmail()).toHaveValue('jimmywhite@blahblah.com');
+		expect(getEmail()).toHaveValue(TESTUSERS[0].email);
 		expect(getPasswordInput()).toHaveValue('123456789');
 		expect(getPasswordInput()).toHaveAttribute('type', 'password');
 		expect(getPassWVis_btn()).toBeInTheDocument();
 
-		await user.click(getSubmitBtn());
+		await user.click(screen.getByRole('button', { name: /submit/i }));
 		let resData = '';
 
-		screen.debug();
+		// screen.debug();
 
 		// await waitFor(async () => {
 		// 	resData = await screen.findByText(
@@ -52,12 +54,7 @@ describe.only('Login', () => {
 		// 	expect(resData).toBeInTheDocument();
 		// });
 
-		// expect(resData).toHaveTextContent(
-		// 	'Thank you for your enquiry. We will be in contact with you shortly.'
-		// );
-
-		// expect(resData).toBeVisible();
-		// expect(resData).toHaveClass('text-success text-capitalize');
+		// http://localhost:3000/dashboard
 	});
 });
 

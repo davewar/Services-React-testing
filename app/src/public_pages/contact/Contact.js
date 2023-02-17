@@ -80,7 +80,7 @@ const Contact = () => {
 			const res = await fetch(`${baseUrl}${url}`, options);
 			const data = await res.json();
 			// customFetch(url, options);
-			// console.log('dw', data);
+			console.log('dw', data);
 			// console.log('ISERROR', isError);
 
 			if (data.msg) {

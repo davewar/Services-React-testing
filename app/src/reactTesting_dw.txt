@@ -52,3 +52,8 @@ https://egghead.io/lessons/react-manage-state-in-a-react-component-with-the-uses
 0@gmail.com
 
 // https://kentcdodds.com/blog/stop-mocking-fetch
+
+
+COMMON MISTAKES
+
+https://kentcdodds.com/blog/common-mistakes-with-react-testing-library

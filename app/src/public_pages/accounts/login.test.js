@@ -1,17 +1,11 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor, wait } from '@testing-library/react';
 import Login from './Login';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
 
 import { TESTUSERS } from '../../mocks/data/users';
 
-import { rest } from 'msw';
-import { server } from '../../mocks/server';
-
 import UserProvider from '../../contexts/user';
-
-// import usecontext wrapper
-// import myCustomRender from '../../myCustomRender';
 
 // import { expect, jest, test } from '@jest/globals';
 
@@ -29,32 +23,79 @@ describe.only('Login', () => {
 
 		render(<MockLogin />, { wrapper: UserProvider });
 
+		await user.type(getEmail(), 'dave');
+
+		expect(await screen.findByText(/invalid email!/i)).toBeInTheDocument();
+
+		await user.clear(getEmail());
 		await user.type(getEmail(), TESTUSERS[0].email);
-		user.tab();
-		await user.type(getPasswordInput(), '123456789');
-		user.tab();
 
 		expect(getEmail()).toHaveValue(TESTUSERS[0].email);
+
+		await user.tab();
+		expect(getPasswordInput()).toHaveFocus();
+		await user.type(getPasswordInput(), '123456789');
 		expect(getPasswordInput()).toHaveValue('123456789');
 		expect(getPasswordInput()).toHaveAttribute('type', 'password');
 		expect(getPassWVis_btn()).toBeInTheDocument();
 
 		await user.click(screen.getByRole('button', { name: /submit/i }));
-		let resData = '';
 
+		// if login success then state update to ""
+		await waitFor(async () => {
+			expect(getEmail()).toHaveValue('');
+		});
+
+		expect(getPasswordInput()).toHaveValue('');
+	});
+
+	test('Component renders correctly, incorrect pw', async () => {
+		user.setup();
+
+		render(<MockLogin />, { wrapper: UserProvider });
+
+		await user.type(getEmail(), TESTUSERS[0].email);
+		await user.type(getPasswordInput(), '1234567');
+
+		expect(getEmail()).toHaveValue(TESTUSERS[0].email);
+		expect(getPasswordInput()).toHaveValue('1234567');
+
+		await user.click(screen.getByRole('button', { name: /submit/i }));
+
+		let item = await screen.findByText('Incorrect login. Please try again', {
+			exact: false,
+		});
+
+		expect(item).toBeInTheDocument();
+		expect(item).toBeVisible();
+		expect(item).toHaveClass('text-danger text-capitalize');
+
+		expect(getEmail()).toHaveValue(TESTUSERS[0].email);
+		expect(getPasswordInput()).toHaveValue('1234567');
 		// screen.debug();
+	});
 
-		// await waitFor(async () => {
-		// 	resData = await screen.findByText(
-		// 		'Thank you for your enquiry. We will be in contact with you shortly.',
-		// 		{
-		// 			exact: false,
-		// 		}
-		// 	);
-		// 	expect(resData).toBeInTheDocument();
-		// });
+	test('Component renders correctly, no user exist', async () => {
+		user.setup();
 
-		// http://localhost:3000/dashboard
+		render(<MockLogin />, { wrapper: UserProvider });
+
+		await user.type(getEmail(), 'JimmyWhite@gmail.com');
+		await user.type(getPasswordInput(), 'whirlwind');
+
+		await user.click(screen.getByRole('button', { name: /submit/i }));
+
+		let item = await screen.findByText('Incorrect login. Please try again', {
+			exact: false,
+		});
+
+		expect(item).toBeInTheDocument();
+		expect(item).toBeVisible();
+		expect(item).toHaveClass('text-danger text-capitalize');
+
+		expect(getEmail()).toHaveValue('JimmyWhite@gmail.com');
+		expect(getPasswordInput()).toHaveValue('whirlwind');
+		// screen.debug();
 	});
 });
 
@@ -70,10 +111,6 @@ function getPassWVis_btn() {
 	return screen.getByRole('button', {
 		name: /click to change password visibility/i,
 	});
-}
-
-function getSubmitBtn() {
-	return screen.getByRole('button', { name: /submit/i });
 }
 
 function getForgotPasswordLInk() {

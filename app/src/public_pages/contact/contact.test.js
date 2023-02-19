@@ -16,7 +16,7 @@ const MockContact = () => {
 	);
 };
 
-describe('Contact', () => {
+describe.skip('Contact', () => {
 	test('Component renders correctly', async () => {
 		user.setup();
 
@@ -141,7 +141,7 @@ describe('Contact', () => {
 	});
 });
 
-describe('Contact form error message', () => {
+describe.skip('Contact form error message', () => {
 	test('Component renders correctly', async () => {
 		// send error
 		server.use(

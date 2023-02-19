@@ -34,7 +34,6 @@ const isEmail = (email) => {
 
 // returns access token and sends cookie named refresh
 module.exports.login_post = async (req, res) => {
-	console.log('USER CONTROLLER HIT on TESTING');
 	try {
 		const { email, password } = req.body;
 

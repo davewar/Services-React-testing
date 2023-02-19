@@ -63,8 +63,6 @@ const Login = () => {
 		if (email && password && !emailErr && !passwordErr) {
 			setSignInErr('');
 
-			console.log('heheheee 1111888888888888');
-
 			try {
 				const res = await fetch(`${baseUrl}/user/login`, {
 					// const res = await fetch('/user/login', {
@@ -76,15 +74,16 @@ const Login = () => {
 					},
 				});
 
-				console.log('heheheee 1111');
 				const data = await res.json();
-				console.log('heheheee 2222');
+
 				console.log('DW DATA', data);
 
 				if (data.msg) {
 					localStorage.setItem('firstlogin', true);
 					setAccessToken(data.msg.accesstoken);
 					setRole(data.msg.user.role);
+					setEmail('');
+					setPassword('');
 					console.log('HERE data user');
 
 					navigate('../dashboard');

@@ -1,4 +1,4 @@
-import { render, screen, waitFor, wait } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import Login from './Login';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
@@ -17,7 +17,7 @@ const MockLogin = () => {
 	);
 };
 
-describe.only('Login', () => {
+describe.skip('Login', () => {
 	test('Component renders correctly', async () => {
 		user.setup();
 

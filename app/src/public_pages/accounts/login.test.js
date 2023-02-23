@@ -112,9 +112,3 @@ function getPassWVis_btn() {
 		name: /click to change password visibility/i,
 	});
 }
-
-function getForgotPasswordLInk() {
-	return screen.getByRole('link', {
-		name: /Forgotten Password/i,
-	});
-}

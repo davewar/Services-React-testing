@@ -5,6 +5,7 @@ import { customRender } from './myCustomRender';
 describe.skip('App', () => {
 	test('Component renders correctly', async () => {
 		customRender(<App />);
+		screen.debug();
 
 		// *** Test one item from each component to confirm main page okay ***
 

@@ -98,4 +98,28 @@ export const handlers = [
 		// 	})
 		// );
 	}),
+
+	rest.post('http://localhost/user/forgot', async (req, res, ctx) => {
+		console.log('user/forgot hit via msw handler');
+
+		let { email } = await req.json();
+
+		if (email !== TESTUSERS[0].email) {
+			// user does not exist
+			return res(
+				ctx.status(400),
+				ctx.json({
+					errors: 'Account does not exist',
+				})
+			);
+		} else {
+			// user exists
+			return res(
+				ctx.status(200),
+				ctx.json({
+					msg: 'Please check your email and reset your password using the link. You may need to check your spam/junk folder.',
+				})
+			);
+		}
+	}),
 ];

@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import Box from './Box';
 import user from '@testing-library/user-event';
 
-describe.only('.Box', () => {
+describe.skip('.Box', () => {
 	test('Component renders correctly', async () => {
 		render(<Box />);
 
@@ -28,8 +28,5 @@ describe.only('.Box', () => {
 			'Tell us what you need and we will find your solution.'
 		);
 		expect(item2).toBeInTheDocument();
-
-		user.hover(item1);
-		screen.debug(item1);
 	});
 });

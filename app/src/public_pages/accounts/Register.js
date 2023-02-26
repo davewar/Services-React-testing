@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import './login.css';
 import { AiOutlineEye } from 'react-icons/ai';
 import { AiOutlineEyeInvisible } from 'react-icons/ai';
 import { emailRegEx } from '../../utils/helpers';
+import UserContext from '../../contexts/user';
 
 const Register = () => {
 	const [name, setName] = useState('');
@@ -25,6 +26,8 @@ const Register = () => {
 	const [visable2, setVisable2] = useState('false');
 
 	const { accessToken } = useContext(UserContext); //global user
+
+	console.log('accessToken testing', accessToken);
 
 	const handleChange = (e, item) => {
 		//clear

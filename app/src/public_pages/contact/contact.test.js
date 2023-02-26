@@ -192,10 +192,6 @@ describe.skip('Contact form error message', () => {
 			expect(await findErrMessage()).toBeInTheDocument();
 		});
 
-		// expect(findErrMessage()).toHaveTextContent(
-		// 	'All form fields are required. Please try again'
-		// );
-
 		let item = screen.getByText(
 			'All form fields are required. Please try again',
 			{

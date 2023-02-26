@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import './login.css';
 import { emailRegEx } from '../../utils/helpers';
 import { AiOutlineEye } from 'react-icons/ai';
@@ -22,8 +22,6 @@ const ResetPassword = () => {
 	const [visable2, setVisable2] = useState('false');
 
 	const { id } = useParams();
-
-	const navigate = useNavigate();
 
 	const handleChange = (e, item) => {
 		//clear
@@ -52,7 +50,7 @@ const ResetPassword = () => {
 				: setEmailErr('');
 		} else if (item === 'password') {
 			setPassword(e.target.value);
-			e.target.value.length < 3
+			e.target.value.length < 6
 				? setPasswordErr('Password must be at least 6 characters!')
 				: setPasswordErr('');
 		} else if (item === 'password2') {
@@ -66,7 +64,6 @@ const ResetPassword = () => {
 
 	const handleSignin = async (e) => {
 		e.preventDefault();
-		console.log('preesd');
 
 		if (
 			email &&
@@ -90,7 +87,6 @@ const ResetPassword = () => {
 				});
 
 				const data = await res.json();
-				// console.log(data);
 
 				if (data.errors) {
 					setSignInErr(data.errors);
@@ -110,7 +106,6 @@ const ResetPassword = () => {
 	};
 	//toggle password
 	const toggleType = (e, name) => {
-		// console.log(name);
 		if (name === 'password') {
 			setVisable((prev) => !prev);
 		} else {

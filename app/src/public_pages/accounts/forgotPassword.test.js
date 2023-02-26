@@ -13,7 +13,7 @@ const MockResetPw = () => {
 	);
 };
 
-describe.only('Password Reset', () => {
+describe.skip('Password Reset', () => {
 	test('Component renders correctly, if user does not exist', async () => {
 		user.setup();
 

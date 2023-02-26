@@ -1,12 +1,50 @@
 import { rest } from 'msw';
-import { handlers as loginHandlers } from './domains/login';
-import { handlers as contactformHandlers } from './domains/contactform';
+// import { handlers as loginHandlers } from './domains/login';
+// import { handlers as contactformHandlers } from './domains/contactform';
+// export const handlers = [...loginHandlers, ...contactformHandlers];
 
 import { TESTUSERS } from './data/users';
 
-// export const handlers = [...loginHandlers, ...contactformHandlers];
-
 export const handlers = [
+	rest.post('http://localhost/user/reset', async (req, res, ctx) => {
+		console.log('user/reset called via msw');
+
+		let { email, accesstoken } = await req.json();
+
+		// no user found
+		if (email === 'neilfoulds@madeupaddress.com') {
+			return res(
+				ctx.status(400),
+				ctx.json({
+					errors:
+						'Invalid Authentication. Please check you entered your email address correctly and try again',
+				})
+			);
+		}
+
+		// user exists + accesstoken correct
+		else if (email === TESTUSERS[0].email && accesstoken === '123') {
+			return res(
+				ctx.status(200),
+				ctx.json({
+					msg: 'Password successfully changed! Please log in to use your account',
+				})
+			);
+		}
+
+		// user exists but accesstoken incorrect (expired)
+		else if (TESTUSERS[0].email && accesstoken !== '123') {
+			console.log('hhhhhhhhhhhhhhhhhhhh');
+			return res(
+				ctx.status(200),
+				ctx.json({
+					errors:
+						'Invalid Authentication. Please request a new link via the SignIn button',
+				})
+			);
+		}
+	}),
+
 	rest.post('http://localhost:5000/api/email/', (req, res, ctx) => {
 		console.log('api/email hit via msw');
 

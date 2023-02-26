@@ -24,7 +24,7 @@ describe.skip('.Navbar', () => {
 			user: '',
 			isUser: false,
 			isEditor: false,
-			isAdmind: false,
+			isAdmin: false,
 			role: '',
 			logUserOut: jest.fn(function () {
 				providerProps.isLogged = false;

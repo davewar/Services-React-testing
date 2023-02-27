@@ -2,8 +2,8 @@ import { render, screen } from '@testing-library/react';
 import Box from './Box';
 import user from '@testing-library/user-event';
 
-describe.skip('.Box', () => {
-	test('Component renders correctly', async () => {
+describe('.Box', () => {
+	test.skip('Component renders correctly', async () => {
 		render(<Box />);
 
 		user.setup();

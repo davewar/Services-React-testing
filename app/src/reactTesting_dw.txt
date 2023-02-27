@@ -8,7 +8,7 @@ No Match        error	error	NULL		    error	    error	    array
 1+ Match	    error	error	error		    array	    array	    array
 Await		    no	    YES	    no		        no	        YES	        no
 
-TABLE OF CONTENTS: CUSTOM MATCHERS EXPAINATIONS
+TABLE OF CONTENTS: CUSTOM MATCHERS EXAMPLES
 https://github.com/testing-library/jest-dom#readme
 
 toBeDisabled

@@ -8,7 +8,6 @@ const ActivateAccount = () => {
 
 	// /activation
 	const { id } = useParams();
-	// console.log(id);
 
 	const validate = async (id) => {
 		try {
@@ -19,7 +18,6 @@ const ActivateAccount = () => {
 			});
 
 			const data = await res.json();
-			console.log('DW', data);
 
 			if (data.errors) {
 				setErr(data.errors);

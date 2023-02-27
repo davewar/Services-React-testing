@@ -5,7 +5,6 @@ import { customRender } from './myCustomRender';
 describe.skip('App', () => {
 	test('Component renders correctly', async () => {
 		customRender(<App />);
-		screen.debug();
 
 		// *** Test one item from each component to confirm main page okay ***
 
@@ -36,7 +35,5 @@ describe.skip('App', () => {
 		expect(
 			screen.getByText(/copyright © 2023\. all rights reserved\./i)
 		).toBeInTheDocument();
-
-		// screen.debug();
 	});
 });

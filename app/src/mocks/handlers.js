@@ -5,9 +5,12 @@ import { rest } from 'msw';
 
 import { TESTUSERS } from './data/users';
 
+// https://github.com/mswjs/headers-polyfill
+// https://github.com/kentcdodds/bookshelf/blob/2e8f1af68e2030de5b89550e933773d6993c0492/src/test/server/server-handlers.js
+
 export const handlers = [
 	rest.post('http://localhost/user/reset', async (req, res, ctx) => {
-		console.log('user/reset called via msw');
+		// console.log('user/reset called via msw');
 
 		let { email, accesstoken } = await req.json();
 
@@ -34,7 +37,6 @@ export const handlers = [
 
 		// user exists but accesstoken incorrect (expired)
 		else if (TESTUSERS[0].email && accesstoken !== '123') {
-			console.log('hhhhhhhhhhhhhhhhhhhh');
 			return res(
 				ctx.status(200),
 				ctx.json({
@@ -46,7 +48,7 @@ export const handlers = [
 	}),
 
 	rest.post('http://localhost:5000/api/email/', (req, res, ctx) => {
-		console.log('api/email hit via msw');
+		// console.log('api/email hit via msw');
 
 		return res(
 			ctx.json({
@@ -56,10 +58,9 @@ export const handlers = [
 	}),
 
 	rest.post('http://localhost:5000/user/login', async (req, res, ctx) => {
-		console.log('user/login hit via msw handler');
+		// console.log('user/login hit via msw handler');
 
 		let { password, email } = await req.json();
-		// console.log('DW....', password, email);
 
 		let userid = TESTUSERS[0].id;
 		let username = TESTUSERS[0].name;
@@ -110,16 +111,11 @@ export const handlers = [
 	}),
 
 	rest.get('http://localhost/user/infor', async (req, res, ctx) => {
-		console.log('user/infor called via msw');
-
-		// let {email} = req.body
+		// console.log('user/infor called via msw');
 
 		let userid = TESTUSERS[0].id;
 		let username = TESTUSERS[0].name;
 		let userrole = TESTUSERS[0].role;
-
-		// let accesstoken =
-		// 	'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzOGNmM2FmYjM3ZWY5OTFkMDc1NTg3NyIsImlhdCI6MTY3NjYyMjk1MCwiZXhwIjoxNjc2NjIzODUwfQ.eW1ABFO-zjF0G1s5HsSisW6TJYap3DF1qaZ5Z32EXoI';
 
 		return res(
 			ctx.status(200),
@@ -138,7 +134,7 @@ export const handlers = [
 	}),
 
 	rest.post('http://localhost/user/forgot', async (req, res, ctx) => {
-		console.log('user/forgot hit via msw handler');
+		// console.log('user/forgot hit via msw handler');
 
 		let { email } = await req.json();
 
@@ -156,6 +152,30 @@ export const handlers = [
 				ctx.status(200),
 				ctx.json({
 					msg: 'Please check your email and reset your password using the link. You may need to check your spam/junk folder.',
+				})
+			);
+		}
+	}),
+
+	rest.post('http://localhost/user/register', async (req, res, ctx) => {
+		// console.log('user/register called via msw');
+
+		let { email } = await req.json();
+
+		if (email !== TESTUSERS[0].email) {
+			//valid user
+			return res(
+				ctx.status(200),
+				ctx.json({
+					msg: 'Please check your email and activate your account using the link',
+				})
+			);
+		} else if (email === TESTUSERS[0].email) {
+			// account exists
+			return res(
+				ctx.status(400),
+				ctx.json({
+					errors: 'Account already exists',
 				})
 			);
 		}

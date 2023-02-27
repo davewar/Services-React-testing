@@ -67,8 +67,6 @@ describe.skip('Password Reset', () => {
 		expect(item).toBeVisible();
 		expect(item).toHaveClass('text-danger text-capitalize');
 		expect(emailInput).toHaveValue('hello@gmail.com');
-
-		screen.debug();
 	});
 
 	test('Component renders correctly, if user does exist', async () => {

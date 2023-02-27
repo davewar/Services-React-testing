@@ -1,4 +1,4 @@
-import { render, screen, waitFor, act } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import Navbar from './Navbar';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
@@ -32,7 +32,7 @@ describe.skip('.Navbar', () => {
 			isLogged: false,
 		};
 
-		// render(<MockNavbar />);
+		// render(<MockNavbar />);a
 		// customRender(<MockNavbar />);
 		mycustomRender(<Navbar />, { providerProps });
 
@@ -66,13 +66,9 @@ describe.skip('.Navbar', () => {
 	test('Component renders correctly if user is logged in', async () => {
 		user.setup();
 
-		// console.log('HMMMMM', providerProps.isLogged);
-
 		providerProps.isLogged = true;
 
 		mycustomRender(<Navbar />, { providerProps });
-
-		// console.log('BEFORE', providerProps);
 
 		//dont show
 		let loginlink = screen.queryByRole('link', { name: /Log In/i });
@@ -96,8 +92,6 @@ describe.skip('.Navbar', () => {
 	test('Component renders if a user is logged in and then logs out', async () => {
 		user.setup();
 
-		// console.log('ISLOGGEDOUT', providerProps.isLogged);
-
 		providerProps = {
 			logUserOut: jest.fn(function () {
 				providerProps.isLogged = false;
@@ -106,8 +100,6 @@ describe.skip('.Navbar', () => {
 		};
 
 		mycustomRender(<Navbar />, { providerProps });
-
-		// console.log('BEFORE', providerProps);
 
 		//dont show
 		let loginlink = screen.queryByRole('link', { name: /Log In/i });
@@ -127,11 +119,8 @@ describe.skip('.Navbar', () => {
 
 		expect(providerProps.logUserOut).toHaveBeenCalledTimes(1);
 
-		console.log('NOW USER LOGEED OUT', providerProps.isLogged);
 		expect(providerProps.isLogged).toBeFalsy();
 		// expect(providerProps.isLogged).toBeTruthy();
-
-		// screen.debug();
 
 		// now show
 		let getLogin = screen.getByRole('link', { name: /Log In/i });

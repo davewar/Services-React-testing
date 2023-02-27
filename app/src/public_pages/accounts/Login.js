@@ -76,25 +76,20 @@ const Login = () => {
 
 				const data = await res.json();
 
-				console.log('DW DATA', data);
-
 				if (data.msg) {
 					localStorage.setItem('firstlogin', true);
 					setAccessToken(data.msg.accesstoken);
 					setRole(data.msg.user.role);
 					setEmail('');
 					setPassword('');
-					console.log('HERE data user');
 
 					navigate('../dashboard');
 				} else if (data.errors) {
 					setSignInErr(data.errors);
-					console.log('HEREEEEE data error');
 				}
 			} catch (err) {
 				console.log('dw error message login:', err.message);
 				setSignInErr('No Server Response');
-				console.log('HERE data user2');
 			}
 		}
 	};

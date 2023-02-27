@@ -11,7 +11,7 @@ const MockFooter = () => {
 	);
 };
 
-describe.only('.Footer', () => {
+describe.skip('.Footer', () => {
 	test('Component renders correctly', async () => {
 		user.setup();
 

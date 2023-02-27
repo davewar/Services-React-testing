@@ -111,10 +111,6 @@ describe.skip('Contact', () => {
 		// post to 'api/email'
 		await user.click(submitBtn);
 
-		// await waitFor(async () => {
-		// 	expect(await findData()).toBeInTheDocument();
-		// });
-
 		let resData;
 
 		await waitFor(async () => {
@@ -209,15 +205,6 @@ describe.skip('Contact form error message', () => {
 		expect(tAreaInput).toHaveValue('blah.................');
 	});
 });
-
-// function findData() {
-// 	return screen.findByText(
-// 		'Thank you for your enquiry. We will be in contact with you shortly.',
-// 		{
-// 			exact: false,
-// 		}
-// 	);
-// }
 
 function findErrMessage() {
 	return screen.findByText('All form fields are required. Please try again', {

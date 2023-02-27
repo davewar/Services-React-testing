@@ -72,7 +72,6 @@ describe.skip('Login', () => {
 
 		expect(getEmail()).toHaveValue(TESTUSERS[0].email);
 		expect(getPasswordInput()).toHaveValue('1234567');
-		// screen.debug();
 	});
 
 	test('Component renders correctly, no user exist', async () => {
@@ -95,7 +94,6 @@ describe.skip('Login', () => {
 
 		expect(getEmail()).toHaveValue('JimmyWhite@gmail.com');
 		expect(getPasswordInput()).toHaveValue('whirlwind');
-		// screen.debug();
 	});
 });
 

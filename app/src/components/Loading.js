@@ -13,7 +13,7 @@ const Loading = () => {
 				}}
 			>
 				<div>
-					<SpinnerCircular color='blue' size={'150'} />
+					<SpinnerCircular color='blue' size={'150'} data-testid='loader' />
 				</div>
 			</center>
 		</>

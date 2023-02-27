@@ -58,7 +58,6 @@ const Contact = () => {
 	};
 
 	const handleSubmit = async (e) => {
-		// console.log(e.target.email.value);
 		e.preventDefault();
 		setSignInErr('');
 		setSuccess('');
@@ -80,8 +79,6 @@ const Contact = () => {
 			const res = await fetch(`${baseUrl}${url}`, options);
 			const data = await res.json();
 			// customFetch(url, options);
-			console.log('dw', data);
-			// console.log('ISERROR', isError);
 
 			if (data.msg) {
 				setSuccess(data.msg);

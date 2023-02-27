@@ -4,7 +4,7 @@ import './login.css';
 import { AiOutlineEye } from 'react-icons/ai';
 import { AiOutlineEyeInvisible } from 'react-icons/ai';
 import { emailRegEx } from '../../utils/helpers';
-import UserContext from '../../contexts/user';
+import { UserContext } from '../../contexts/user';
 
 const Register = () => {
 	const [name, setName] = useState('');
@@ -26,8 +26,6 @@ const Register = () => {
 	const [visable2, setVisable2] = useState('false');
 
 	const { accessToken } = useContext(UserContext); //global user
-
-	console.log('accessToken testing', accessToken);
 
 	const handleChange = (e, item) => {
 		//clear
@@ -62,9 +60,9 @@ const Register = () => {
 		if (item === 'password') {
 			setPassword(e.target.value);
 
-			e.target.value.length > 3
+			e.target.value.length > 6
 				? setPasswordErr('')
-				: setPasswordErr('Password must be at least 3 characters!');
+				: setPasswordErr('Password must be at least 6 characters!');
 		}
 
 		if (item === 'password2') {
@@ -104,7 +102,6 @@ const Register = () => {
 				});
 
 				const data = await res.json();
-				// console.log(data);
 
 				if (data.errors) {
 					setSignInErr(data.errors);
@@ -125,7 +122,6 @@ const Register = () => {
 	};
 	//toggle password
 	const toggleType = (e, name) => {
-		// console.log(name);
 		if (name === 'password') {
 			setVisable((prev) => !prev);
 		} else {

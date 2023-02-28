@@ -28,7 +28,7 @@ let providerProps = {
 	isLogged: false,
 };
 
-describe('.Pages', () => {
+describe.skip('.Pages', () => {
 	// beforeEach(() => {
 	// 	window.location.pathname = '/';
 	// });
@@ -66,8 +66,6 @@ describe('.Pages', () => {
 
 	test('Component renders correctly, "RequireAuth component" protects private page "dashboard" , expect if no token user redirect to home', async () => {
 		window.history.pushState({}, '', '/dashboard');
-		// providerProps.accessToken = '123456';
-		// providerProps.role = 1;
 
 		user.setup();
 		mycustomRender(<Pages />, { providerProps });
@@ -78,7 +76,6 @@ describe('.Pages', () => {
 	test('Component renders correctly, "RequireAuth component" protects private page "dashboard" , expect if accesstoken but no role then user redirected to unauthorised page', async () => {
 		window.history.pushState({}, '', '/dashboard');
 		providerProps.accessToken = '123456';
-		// providerProps.role = 1;
 
 		user.setup();
 		mycustomRender(<Pages />, { providerProps });

@@ -40,8 +40,6 @@ Download the chrome playground extension or use https://testing-playground.com/ 
 https://testing-library.com/docs/ecosystem-user-event
 
 
-https://github.com/kentcdodds/bookshelf/tree/2e8f1af68e2030de5b89550e933773d6993c0492/src/test
-
 
 
 

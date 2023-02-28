@@ -111,7 +111,7 @@ export const handlers = [
 	}),
 
 	rest.get('http://localhost/user/infor', async (req, res, ctx) => {
-		// console.log('user/infor called via msw');
+		console.log('user/infor called via msw');
 
 		let userid = TESTUSERS[0].id;
 		let username = TESTUSERS[0].name;

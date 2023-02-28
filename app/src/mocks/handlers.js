@@ -3,7 +3,7 @@ import { rest } from 'msw';
 // import { handlers as contactformHandlers } from './domains/contactform';
 // export const handlers = [...loginHandlers, ...contactformHandlers];
 
-import { TESTUSERS } from './data/users';
+import { TESTUSERS, CUSTOMERS } from './data/users';
 
 // https://github.com/mswjs/headers-polyfill
 // https://github.com/kentcdodds/bookshelf/blob/2e8f1af68e2030de5b89550e933773d6993c0492/src/test/server/server-handlers.js
@@ -180,4 +180,33 @@ export const handlers = [
 			);
 		}
 	}),
+
+	// private
+
+	rest.post(
+		'http://localhost:5000/api/customer/create',
+		async (req, res, ctx) => {
+			console.log('PRIVATE ROUTE, customer/create called via msw');
+
+			let { email } = await req.json();
+
+			if (email === CUSTOMERS[0].email) {
+				//valid user
+				return res(
+					ctx.status(200),
+					ctx.json({
+						msg: 'New customer added',
+					})
+				);
+			} else if (email !== CUSTOMERS[0].email) {
+				// account exists
+				return res(
+					ctx.status(400),
+					ctx.json({
+						errors: 'Account already exists',
+					})
+				);
+			}
+		}
+	),
 ];

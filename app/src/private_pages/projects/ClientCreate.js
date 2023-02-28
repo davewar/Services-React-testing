@@ -43,12 +43,14 @@ const ClientCreate = () => {
 
 		if (item === 'name') {
 			setName(e.target.value);
-			e.target.value.length < 3
-				? setNameErr('Name must be at least 3 characters!')
+			e.target.value.length < 6
+				? setNameErr('Name must be at least 6 characters!')
 				: setNameErr('');
 		}
 
 		if (item === 'email') {
+			if (emailErr) setEmailErr('');
+
 			setEmail(e.target.value);
 			!emailRegEx.test(e.target.value)
 				? setEmailErr('Invalid Email!')
@@ -69,6 +71,10 @@ const ClientCreate = () => {
 			setBusinessName(e.target.value);
 		}
 		if (item === 'address') {
+			if (e.target.name === 'addressLine1') setAddressErr('');
+			if (e.target.name === 'town') setTownErr('');
+			if (e.target.name === 'postcode') setPostcodeErr('');
+
 			setAddress((prev) => {
 				return {
 					...prev,
@@ -78,6 +84,7 @@ const ClientCreate = () => {
 		}
 
 		if (item === 'telephone') {
+			setTelephoneErr('');
 			setTelephone(e.target.value);
 		}
 	};

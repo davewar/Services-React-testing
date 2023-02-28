@@ -6,15 +6,6 @@ import '@testing-library/jest-dom';
 import { HelmetProvider } from 'react-helmet-async'; //meta title data -see Seo component.
 import user from '@testing-library/user-event';
 
-import GoToTop from '../../components/GoToTop';
-
-// let mymock = jest.fn().mockReturnValue({email: "a"})
-// expect(mymock.tohavebeencalled())
-
-// const mockConfig = jest.fn();
-
-// jest.mock('../../components/GoToTop');
-
 const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
 	return render(
 		<UserContext.Provider value={providerProps}>

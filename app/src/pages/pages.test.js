@@ -28,7 +28,7 @@ let providerProps = {
 	isLogged: false,
 };
 
-describe.skip('.Pages', () => {
+describe('.Pages', () => {
 	// beforeEach(() => {
 	// 	window.location.pathname = '/';
 	// });
@@ -92,5 +92,107 @@ describe.skip('.Pages', () => {
 		mycustomRender(<Pages />, { providerProps });
 
 		expect(window.location.pathname).toBe('/dashboard');
+	});
+
+	//
+
+	test('Component renders correctly, "RequireAuth component" protects private page "/email"', async () => {
+		window.history.pushState({}, '', '/emails');
+		providerProps.accessToken = '';
+		providerProps.role = null;
+
+		user.setup();
+		mycustomRender(<Pages />, { providerProps });
+
+		expect(window.location.pathname).toBe('/');
+	});
+
+	let listPaths = [
+		'/users',
+		'/projects/create',
+		'/projects',
+		'/projects/create',
+		'/projects/customer_create',
+		'/projects/customer_amend',
+		'/register',
+	];
+
+	const addPath = (path, accessToken = null, role = null) => {
+		window.history.pushState({}, '', path);
+		providerProps.accessToken = accessToken;
+		providerProps.role = role;
+
+		user.setup();
+		mycustomRender(<Pages />, { providerProps });
+	};
+
+	test('Component renders correctly, "RequireAuth component" protects private pages, if not authorised and no token"', async () => {
+		addPath(listPaths[0]);
+		expect(window.location.pathname).toBe('/');
+
+		addPath(listPaths[1]);
+		expect(window.location.pathname).toBe('/');
+
+		addPath(listPaths[2]);
+		expect(window.location.pathname).toBe('/');
+
+		addPath(listPaths[3]);
+		expect(window.location.pathname).toBe('/');
+
+		addPath(listPaths[4]);
+		expect(window.location.pathname).toBe('/');
+
+		addPath(listPaths[5]);
+		expect(window.location.pathname).toBe('/');
+
+		addPath(listPaths[6]);
+		expect(window.location.pathname).toBe('/');
+	});
+
+	test('Component renders correctly, "RequireAuth component" protects private pages, token supplied but no role"', async () => {
+		// redirect to path
+		let path = '/unauthorized';
+
+		addPath(listPaths[0], '12345');
+		expect(window.location.pathname).toBe(path);
+
+		addPath(listPaths[1], '12345');
+		expect(window.location.pathname).toBe(path);
+
+		addPath(listPaths[2], '12345');
+		expect(window.location.pathname).toBe(path);
+
+		addPath(listPaths[3], '12345');
+		expect(window.location.pathname).toBe(path);
+
+		addPath(listPaths[4], '12345');
+		expect(window.location.pathname).toBe(path);
+
+		addPath(listPaths[5], '12345');
+		expect(window.location.pathname).toBe(path);
+
+		addPath(listPaths[6], '12345');
+		expect(window.location.pathname).toBe(path);
+	});
+
+	test('Component renders correctly, "RequireAuth component" protects private pages, token supplied with a role"', async () => {
+		// redirect to path
+		let path = '/unauthorized';
+
+		addPath(listPaths[0], '12345', 0);
+		expect(window.location.pathname).toBe(listPaths[0]);
+		expect(window.location.pathname).not.toBe(path);
+
+		addPath(listPaths[0], '12345', 1);
+		expect(window.location.pathname).toBe(listPaths[0]);
+		expect(window.location.pathname).not.toBe(path);
+
+		addPath(listPaths[0], '12345', 2);
+		expect(window.location.pathname).toBe(listPaths[0]);
+		expect(window.location.pathname).not.toBe(path);
+
+		addPath(listPaths[0], '12345', 3); // << role does not exist
+		expect(window.location.pathname).not.toBe(listPaths[0]);
+		expect(window.location.pathname).toBe(path);
 	});
 });

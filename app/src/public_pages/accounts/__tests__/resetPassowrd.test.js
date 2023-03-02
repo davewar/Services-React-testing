@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
-import ResetPassword from './ResetPassword';
+import ResetPassword from '../ResetPassword';
 
-import { TESTUSERS } from '../../mocks/data/users';
+import { TESTUSERS } from '../../../mocks/data/users';
 
 import '@testing-library/jest-dom';
 

@@ -1,11 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import Login from './Login';
+import Login from '../Login';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
 
-import { TESTUSERS } from '../../mocks/data/users';
+import { TESTUSERS } from '../../../mocks/data/users';
 
-import UserProvider from '../../contexts/user';
+import UserProvider from '../../../contexts/user';
 
 // import { expect, jest, test } from '@jest/globals';
 

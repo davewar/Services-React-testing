@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import Navbar from './Navbar';
+import Navbar from '../Navbar';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
-import { UserContext } from '../contexts/user';
+import { UserContext } from '../../contexts/user';
 import '@testing-library/jest-dom';
 
 let providerProps;
@@ -32,8 +32,6 @@ describe.skip('.Navbar', () => {
 			isLogged: false,
 		};
 
-		// render(<MockNavbar />);a
-		// customRender(<MockNavbar />);
 		mycustomRender(<Navbar />, { providerProps });
 
 		let item = screen.getByRole('img', { name: /vector1/i });

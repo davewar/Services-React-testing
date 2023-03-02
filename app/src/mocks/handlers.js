@@ -111,7 +111,7 @@ export const handlers = [
 	}),
 
 	rest.get('http://localhost/user/infor', async (req, res, ctx) => {
-		console.log('user/infor called via msw');
+		// console.log('user/infor called via msw');
 
 		let userid = TESTUSERS[0].id;
 		let username = TESTUSERS[0].name;
@@ -181,12 +181,12 @@ export const handlers = [
 		}
 	}),
 
-	// private
+	// private ClientCreate.js
 
 	rest.post(
 		'http://localhost:5000/api/customer/create',
 		async (req, res, ctx) => {
-			console.log('PRIVATE ROUTE, customer/create called via msw');
+			// console.log('PRIVATE ROUTE, customer/create called via msw');
 
 			let { email } = await req.json();
 
@@ -209,4 +209,34 @@ export const handlers = [
 			}
 		}
 	),
+
+	//private ClientEdit.js
+	rest.get('http://localhost:5000/api/customer', async (req, res, ctx) => {
+		// console.log('PRIVATE ROUTE, GET ClientEdit.js api/customer called via msw');
+		return res(
+			ctx.status(200),
+			ctx.json({
+				msg: CUSTOMERS,
+			})
+		);
+	}),
+
+	//private ClientEdit.js
+	rest.put(
+		'http://localhost:5000/api/customer/update/11',
+		async (req, res, ctx) => {
+			// console.log(
+			// 	'PRIVATE ROUTE, PUT ClientEdit.js api/customer called via msw'
+			// );
+
+			return res(
+				ctx.status(200),
+				ctx.json({
+					msg: 'Customer updated',
+				})
+			);
+		}
+	),
 ];
+
+// GET http://localhost:5000/api/customer    / clientedit.js

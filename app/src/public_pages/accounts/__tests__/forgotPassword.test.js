@@ -1,9 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
-import { TESTUSERS } from '../../mocks/data/users';
-import UserProvider from '../../contexts/user';
-import ForgotPassword from './ForgotPassword';
+import { TESTUSERS } from '../../../mocks/data/users';
+import UserProvider from '../../../contexts/user';
+import ForgotPassword from '../ForgotPassword';
 
 const MockResetPw = () => {
 	return (

@@ -1,15 +1,11 @@
 import { render, screen } from '@testing-library/react';
-
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
-import { UserContext } from '../../contexts/user';
-import { TESTUSERS } from '../../mocks/data/users';
+import { UserContext } from '../../../contexts/user';
 import '@testing-library/jest-dom';
 
-import ClientCreate from './ClientCreate';
-import usePrivateFetch from '../../hooks/usePrivateFetch';
-
-import { CUSTOMERS } from './../../mocks/data/users';
+import ClientCreate from '../ClientCreate';
+import { CUSTOMERS } from '../../../mocks/data/users';
 
 let providerProps;
 

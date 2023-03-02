@@ -36,15 +36,15 @@ export const TESTUSERS = [
 
 export const CUSTOMERS = [
 	{
-		id: 11,
+		_id: 11,
 		name: 'newnameforCustomer1',
 		businessName: 'bus1',
 		email: 'customer1@gmail.com',
 		telephone: '0132212345678',
 		address: {
 			addressLine1: '11 street road',
-			addressLine2: '',
-			addressLine3: '',
+			addressLine2: 'line2',
+			addressLine3: 'line3',
 			town: 'Erith',
 			county: 'Kent',
 			postcode: 'DA2',
@@ -54,7 +54,7 @@ export const CUSTOMERS = [
 		updatedAt: '2023-02-12T18:28:46.480+00:00',
 	},
 	{
-		id: 12,
+		_id: 12,
 		name: 'newnameforCustomer2',
 		businessName: 'bus2',
 		email: 'customer2@gmail.com',
@@ -70,5 +70,26 @@ export const CUSTOMERS = [
 		createdBy: '1@testmocha.com',
 		createdAt: '2023-01-25T10:10:27.601+00:00',
 		updatedAt: '2023-02-26T18:28:46.480+00:00',
+	},
+];
+
+export const AMENDCUSTOMER1 = [
+	{
+		_id: 11,
+		name: 'newnameforCustomer1AMEND',
+		businessName: 'bus1AMEND',
+		email: 'customer1AMEND@gmail.com',
+		telephone: '013221234567811111',
+		address: {
+			addressLine1: '11 street roadAMEND',
+			addressLine2: 'line2AMEND',
+			addressLine3: 'line3AMEND',
+			town: 'ErithAMEND',
+			county: 'KentAMEND',
+			postcode: 'DA2AMEND',
+		},
+		createdBy: '1@testmocha.com',
+		createdAt: '2023-01-22T10:10:27.601+00:00',
+		updatedAt: '2023-02-12T18:28:46.480+00:00',
 	},
 ];

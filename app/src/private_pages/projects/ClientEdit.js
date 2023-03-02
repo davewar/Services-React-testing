@@ -33,8 +33,6 @@ const ClientEdit = () => {
 		let getCustomers = async () => {
 			try {
 				let { data, response } = await callFetch(url, options);
-				// console.log(data, response);
-
 				if (response.status === 403 && data.errors) {
 					setLoading(false);
 					setErrors(data.errors);
@@ -208,7 +206,6 @@ const ClientEdit = () => {
 						</option>
 
 						{customers?.map(function (customer) {
-							console.log(customers.length);
 							return (
 								<option key={customer.email} value={customer.email}>
 									{customer.email}

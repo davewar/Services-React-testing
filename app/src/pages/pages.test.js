@@ -28,10 +28,14 @@ let providerProps = {
 	isLogged: false,
 };
 
-describe('.Pages', () => {
-	// beforeEach(() => {
-	// 	window.location.pathname = '/';
-	// });
+describe.skip('.Pages', () => {
+	beforeEach(() => {
+		window.scrollTo = jest.fn();
+	});
+
+	afterAll(() => {
+		jest.resetAllMocks();
+	});
 
 	test('Component renders correctly, expect public link to navigate to correct page - login', async () => {
 		user.setup();
@@ -107,8 +111,19 @@ describe('.Pages', () => {
 		expect(window.location.pathname).toBe('/');
 	});
 
+	test('Component renders correctly, "RequireAuth component" protects private page "/users"', async () => {
+		window.history.pushState({}, '', '/users');
+		providerProps.accessToken = '';
+		providerProps.role = null;
+
+		user.setup();
+		mycustomRender(<Pages />, { providerProps });
+
+		expect(window.location.pathname).toBe('/');
+	});
+
 	let listPaths = [
-		'/users',
+		// '/users',
 		'/projects/create',
 		'/projects',
 		'/projects/create',

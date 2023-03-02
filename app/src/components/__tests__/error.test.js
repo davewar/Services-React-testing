@@ -1,5 +1,5 @@
-import { render, screen, waitFor } from '@testing-library/react';
-import Error from './Error';
+import { render, screen } from '@testing-library/react';
+import Error from '../Error';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
 

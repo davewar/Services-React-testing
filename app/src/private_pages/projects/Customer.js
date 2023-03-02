@@ -22,8 +22,8 @@ const Customer = ({ customer, ...rest }) => {
 
 	const [address, setAddress] = useState({
 		addressLine1: customer[0].address.addressLine1,
-		addressLine2: customer[0].address.addressLine1,
-		addressLine3: customer[0].address.addressLine1,
+		addressLine2: customer[0].address.addressLine2,
+		addressLine3: customer[0].address.addressLine3,
 		town: customer[0].address.town,
 		county: customer[0].address.county,
 		postcode: customer[0].address.postcode,

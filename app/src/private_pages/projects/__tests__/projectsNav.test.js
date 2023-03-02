@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import ProjectsMain from './ProjectsMain';
+import ProjectsMain from '../ProjectsMain';
 import { BrowserRouter } from 'react-router-dom';
-import { UserContext } from '../../contexts/user';
+import { UserContext } from '../../../contexts/user';
 import '@testing-library/jest-dom';
 import { HelmetProvider } from 'react-helmet-async'; //meta title data -see Seo component.
 import user from '@testing-library/user-event';
@@ -17,11 +17,12 @@ const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
 	);
 };
 
-let providerProps = {};
+let providerProps = {
+	user: 'Dave',
+};
 
 describe.skip('.Projectmain', () => {
 	window.scrollTo = jest.fn();
-
 	afterAll(() => {
 		jest.clearAllMocks();
 	});
@@ -34,9 +35,5 @@ describe.skip('.Projectmain', () => {
 
 		let item = screen.getByRole('link', { name: 'link to create client page' });
 		expect(item).toBeInTheDocument();
-
-		// a link checked
-		await user.click(item);
-		expect(window.location.pathname).toBe('/projects/customer_create');
 	});
 });

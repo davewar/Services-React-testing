@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import Register from './Register';
+import Register from '../Register';
 import { BrowserRouter } from 'react-router-dom';
 import user from '@testing-library/user-event';
-import { UserContext } from '../../contexts/user';
-import { TESTUSERS } from '../../mocks/data/users';
+import { UserContext } from '../../../contexts/user';
+import { TESTUSERS } from '../../../mocks/data/users';
 import '@testing-library/jest-dom';
 
 // https://stackoverflow.com/questions/56828017/testing-usecontext-with-react-testing-library

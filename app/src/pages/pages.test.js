@@ -4,7 +4,7 @@ import Pages from './Pages';
 import user from '@testing-library/user-event';
 import { UserContext } from '../contexts/user';
 import '@testing-library/jest-dom';
-import { HelmetProvider } from 'react-helmet-async'; //meta title data -see Seo component.
+import { HelmetProvider } from 'react-helmet-async';
 
 const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
 	return render(
@@ -28,7 +28,7 @@ let providerProps = {
 	isLogged: false,
 };
 
-describe.skip('.Pages', () => {
+describe('.Pages', () => {
 	beforeEach(() => {
 		window.scrollTo = jest.fn();
 	});

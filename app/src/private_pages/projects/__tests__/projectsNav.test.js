@@ -3,7 +3,7 @@ import ProjectsMain from '../ProjectsMain';
 import { BrowserRouter } from 'react-router-dom';
 import { UserContext } from '../../../contexts/user';
 import '@testing-library/jest-dom';
-import { HelmetProvider } from 'react-helmet-async'; //meta title data -see Seo component.
+import { HelmetProvider } from 'react-helmet-async';
 import user from '@testing-library/user-event';
 
 const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
@@ -21,7 +21,7 @@ let providerProps = {
 	user: 'Dave',
 };
 
-describe.skip('.Projectmain', () => {
+describe('.Projectmain', () => {
 	window.scrollTo = jest.fn();
 	afterAll(() => {
 		jest.clearAllMocks();

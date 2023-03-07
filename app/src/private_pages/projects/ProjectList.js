@@ -127,8 +127,6 @@ const ProjectList = () => {
 		}
 	}
 
-	// console.log( 'L', filteredData.length);
-
 	//delete project
 	const deleteItem = async () => {
 		setErrors('');
@@ -154,7 +152,6 @@ const ProjectList = () => {
 			};
 
 			let { data, response } = await callFetch(urlDelete, optionsDelete);
-			// console.log(data, response);
 
 			if (data.errors) {
 				if (response.status === 403) {
@@ -203,9 +200,6 @@ const ProjectList = () => {
 
 	///end of delete process
 
-	//amend project
-	//update user
-
 	return (
 		<>
 			{loading && <Loading />}
@@ -214,13 +208,11 @@ const ProjectList = () => {
 					<span className='text-danger text-capitalize'>{errors}</span>
 				</div>
 			)}
-
 			{success && (
 				<div className='alert alert-success text-center'>
 					<span className='text-success text-capitalize'>{success}</span>
 				</div>
 			)}
-
 			{deleteShow && (
 				<MessageModal
 					dataObj={dataObj}
@@ -239,7 +231,7 @@ const ProjectList = () => {
 			/>
 
 			<div className='projects-container'>
-				{filteredData &&
+				{projects &&
 					filteredData.map((project) => {
 						return (
 							<ProjectListItem
@@ -251,7 +243,7 @@ const ProjectList = () => {
 						);
 					})}
 			</div>
-			{filteredData.length === 0 && <div>No record found</div>}
+			{filteredData.length === 0 && <div>No records found</div>}
 		</>
 	);
 };

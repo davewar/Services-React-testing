@@ -3,7 +3,6 @@ let expect = chai.expect;
 const chaiHttp = require('chai-http');
 const server = require('../server');
 const { assert, use } = require('chai');
-const { log } = require('console');
 
 const Emails = require('../models/emails');
 const LOGINS = require('./__testUtils__/logins');
@@ -59,7 +58,6 @@ describe('* Emails *', () => {
 
 				.end((err, res) => {
 					if (err) {
-						console.log('DW_ERROR', err);
 						done(err);
 					}
 

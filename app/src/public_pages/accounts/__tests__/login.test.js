@@ -7,8 +7,6 @@ import { TESTUSERS } from '../../../mocks/data/users';
 
 import UserProvider from '../../../contexts/user';
 
-// import { expect, jest, test } from '@jest/globals';
-
 const MockLogin = () => {
 	return (
 		<BrowserRouter>
@@ -17,7 +15,7 @@ const MockLogin = () => {
 	);
 };
 
-describe.skip('Login', () => {
+describe('Login', () => {
 	test('Component renders correctly', async () => {
 		user.setup();
 

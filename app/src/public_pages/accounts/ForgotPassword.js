@@ -44,7 +44,6 @@ const ForgotPassword = () => {
 				});
 
 				const data = await res.json();
-				// console.log(data);
 
 				if (data.errors) {
 					setSignInErr(data.errors);

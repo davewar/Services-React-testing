@@ -109,8 +109,6 @@ module.exports.login_post = async (req, res) => {
 
 		//email address needs to be valid before first use
 		if (val == 'false') {
-			// console.log('here');
-			//
 			const accesstoken = createToken(user._id);
 			const url = `${process.env.CLIENT_URL}/user/activate/${accesstoken}`;
 			// main(email, url, 'DWSHOP - Please activate your account');
@@ -251,21 +249,16 @@ module.exports.deleteUser_delete = async (req, res) => {
 module.exports.refreshToken_get = async (req, res) => {
 	try {
 		const refresh_token = req.cookies.refreshtoken;
-		// console.log("refreshToken_get - RT sent",refresh_token)
+
 		if (!refresh_token)
 			return res.status(403).json({ msg: 'Please Login or Register -a' });
 
 		jwt.verify(refresh_token, process.env.REFESH_SECRET_KEY, (err, decoded) => {
-			// console.log(" refreshToken_get Cookie Valid - E",err)
-			// console.log(" refreshToken_get Cookie Valid - DECODED",decoded)
 			if (err)
 				return res.status(403).json({ msg: 'Please Login or Register -b' });
 
 			const accesstoken = createToken(decoded.id);
-			// console.log(
-			// 	'refreshToken_get run + new access token sent',
-			// 	accesstoken
-			// );
+
 			res.status(200).json({ accesstoken });
 		});
 	} catch (err) {
@@ -281,12 +274,10 @@ module.exports.refreshToken_get = async (req, res) => {
 // This function will run again from this compo if access token changes
 module.exports.getUser_get = async (req, res) => {
 	try {
-		// console.log('getUser_get a', req.user.id);  // user obj select will exclude -password.
 		const user = await User.findById(req.user.id).select('-password');
-		// console.log("getUser_get", user);
+
 		if (!user) return res.status(400).json({ msg: 'User does not exist.' });
 
-		// res.status(200).json(user);
 		res.status(200).json({
 			user: { name: user.name, role: user.role },
 		});
@@ -358,7 +349,7 @@ module.exports.forgot_post = async (req, res) => {
 module.exports.activate_post = async (req, res) => {
 	try {
 		const { accesstoken } = req.body;
-		// console.log(accesstoken);
+
 		if (!accesstoken)
 			return res.status(400).json({
 				errors:
@@ -366,7 +357,6 @@ module.exports.activate_post = async (req, res) => {
 			});
 
 		jwt.verify(accesstoken, process.env.SECRET_KEY, (err, decoded) => {
-			// console.log("D",decoded);
 			if (err) {
 				return res.status(400).json({
 					errors:
@@ -405,7 +395,7 @@ module.exports.activate_post = async (req, res) => {
 module.exports.reset_post = async (req, res) => {
 	try {
 		const { password, email, accesstoken } = req.body;
-		console.log('reset dw');
+
 		//form validations
 
 		if (!accesstoken || !email || !password)
@@ -430,7 +420,6 @@ module.exports.reset_post = async (req, res) => {
 			});
 
 		jwt.verify(accesstoken, process.env.SECRET_KEY, (err, decoded) => {
-			// console.log("D",decoded);
 			if (err) {
 				return res.status(400).json({
 					errors:
@@ -481,8 +470,6 @@ module.exports.updateUser_put = async (req, res) => {
 	if (!active || !validated) {
 		return res.status(400).json({ errors: 'Missing required fields' });
 	}
-
-	// console.log('FEEEE'.req.params);
 
 	let foundUser = await User.findOne({ _id: req.params.id });
 

@@ -11,10 +11,6 @@ import '@testing-library/jest-dom';
 import ClientEdit from '../ClientEdit';
 import { CUSTOMERS, AMENDCUSTOMER1 } from '../../../mocks/data/users';
 
-import { rest } from 'msw';
-
-import { server } from '../../../mocks/server';
-
 let providerProps;
 
 providerProps = {
@@ -31,10 +27,13 @@ const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
 	);
 };
 
-describe.skip('.ClientEdit', () => {
+describe('.ClientEdit', () => {
 	window.scrollTo = jest.fn();
+	jest.setTimeout(10000); // need longer
+
 	afterAll(() => {
 		jest.clearAllMocks();
+		jest.setTimeout(5000); // bk to default
 	});
 
 	test('Component renders correctly when fetch returns a customers list', async () => {

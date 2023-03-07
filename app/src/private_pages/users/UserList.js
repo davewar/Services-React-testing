@@ -121,7 +121,7 @@ const UserList = () => {
 			setShow(false); //close modal
 			return;
 		}
-		console.log(id);
+
 		try {
 			let urlDelete = `/user/delete/${id}`;
 
@@ -136,7 +136,6 @@ const UserList = () => {
 			};
 
 			let { data, response } = await callFetch(urlDelete, optionsDelete);
-			console.log(data, response);
 
 			if (data.errors) {
 				if (response.status === 403) {

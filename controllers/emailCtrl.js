@@ -73,7 +73,6 @@ module.exports.addEmail_post = async (req, res) => {
 // @access Private
 
 module.exports.deleteEmail_delete = async (req, res) => {
-	// console.log(req.params.id);
 	try {
 		await Email.findByIdAndDelete(req.params.id);
 

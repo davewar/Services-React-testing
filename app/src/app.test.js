@@ -4,8 +4,6 @@ import App from './App';
 import UserProvider from './contexts/user';
 import { HelmetProvider } from 'react-helmet-async'; //meta title data -see Seo component.
 
-// import { expect, jest, test } from '@jest/globals';
-
 const MockApp = () => {
 	return (
 		<UserProvider>
@@ -16,7 +14,7 @@ const MockApp = () => {
 	);
 };
 
-describe.skip('App', () => {
+describe('App', () => {
 	test('Component renders correctly', async () => {
 		render(<MockApp />);
 
@@ -49,7 +47,5 @@ describe.skip('App', () => {
 		expect(
 			screen.getByText(/copyright © 2023\. all rights reserved\./i)
 		).toBeInTheDocument();
-
-		// screen.debug();
 	});
 });

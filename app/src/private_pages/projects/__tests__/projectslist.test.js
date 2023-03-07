@@ -4,60 +4,59 @@ import {
 	waitForElementToBeRemoved,
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import user from '@testing-library/user-event';
 import { UserContext } from '../../../contexts/user';
 import '@testing-library/jest-dom';
+import { HelmetProvider } from 'react-helmet-async';
+import user from '@testing-library/user-event';
 
-import ClientEdit from '../ClientEdit';
-
+import ProjectList from '../ProjectList';
 import { rest } from 'msw';
 import { server } from '../../../mocks/server';
-
-let providerProps;
-
-providerProps = {
-	user: 'dave',
-	accessToken: '12345678910',
-};
 
 const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
 	return render(
 		<UserContext.Provider value={providerProps}>
-			<BrowserRouter>{ui}</BrowserRouter>
+			<HelmetProvider>
+				<BrowserRouter>{ui}</BrowserRouter>
+			</HelmetProvider>
 		</UserContext.Provider>,
 		renderOptions
 	);
 };
 
-describe('.ClientEdit', () => {
+let providerProps = {
+	accessToken: '123456',
+};
+
+describe('.ProjectList', () => {
 	window.scrollTo = jest.fn();
+
+	jest.setTimeout(10000);
+
 	afterAll(() => {
 		jest.clearAllMocks();
+		jest.setTimeout(5000);
 	});
 
-	test('Component renders correctly when fetch returns no customers exist', async () => {
+	test('Component renders correctly if no projects exist', async () => {
 		server.use(
-			rest.get('http://localhost:5000/api/customer', (req, res, ctx) => {
+			rest.get('http://localhost:5000/api/product', (req, res, ctx) => {
 				return res.once(
-					ctx.status(400),
+					ctx.status(200),
 					ctx.json({
-						msg: 'No customers found',
+						msg: 'No projects found',
 					})
 				);
 			})
 		);
 
-		window.scrollTo = jest.fn();
 		user.setup();
-
-		mycustomRender(<ClientEdit />, { providerProps });
+		mycustomRender(<ProjectList />, { providerProps });
 
 		// Loading component found
 		expect(screen.getByTestId('loader')).toBeInTheDocument();
 		await waitForElementToBeRemoved(() => screen.queryByTestId('loader'));
 
-		let item = await screen.findByText('No customers found');
-		expect(item).toBeInTheDocument();
-		expect(item).toHaveClass('text-success text-capitalize');
+		expect(screen.getByText(/no records found/i)).toBeInTheDocument();
 	});
 });

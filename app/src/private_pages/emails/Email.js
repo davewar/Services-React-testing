@@ -4,7 +4,6 @@ import { AiFillDelete } from 'react-icons/ai';
 const Email = (props) => {
 	const { _id: id, email, name, comment, createdAt } = props;
 
-	// console.log(props);
 	return (
 		<>
 			<tr className=''>

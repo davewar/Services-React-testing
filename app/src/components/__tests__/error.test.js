@@ -11,14 +11,12 @@ const MockError = () => {
 	);
 };
 
-describe.skip('.Error', () => {
+describe('.Error', () => {
 	test('Component renders correctly', async () => {
 		user.setup();
 		window.history.pushState({}, '', '/blah');
 
 		render(<MockError />);
-
-		// console.log('BEFORE', window.location.pathname);
 
 		let heading = screen.getByRole('heading', {
 			name: /Oops!/i,
@@ -30,7 +28,7 @@ describe.skip('.Error', () => {
 		expect(linkItem).toBeInTheDocument();
 
 		await user.click(linkItem);
-		// console.log('AFTER', window.location.pathname);
+
 		expect(window.location.pathname).toBe('/');
 	});
 });

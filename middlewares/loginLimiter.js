@@ -10,7 +10,6 @@ const loginLimiter = rateLimit({
 	},
 	skipSuccessfulRequests: true, // if logged in -then dont count me
 	handler: (req, res, next, options) => {
-		// console.log(options);
 		res.status(options.statusCode).send(options.message);
 	},
 	// below are required by docs

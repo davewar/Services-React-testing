@@ -32,7 +32,7 @@ const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
 	);
 };
 
-describe.skip('.Register', () => {
+describe('.Register', () => {
 	test('Component renders correctly if user valid', async () => {
 		user.setup();
 

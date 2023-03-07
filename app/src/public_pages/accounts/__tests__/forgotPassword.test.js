@@ -13,7 +13,7 @@ const MockResetPw = () => {
 	);
 };
 
-describe.skip('Password Reset', () => {
+describe('Password Reset', () => {
 	test('Component renders correctly, if user does not exist', async () => {
 		user.setup();
 
@@ -50,8 +50,6 @@ describe.skip('Password Reset', () => {
 		expect(errMessage).not.toBeInTheDocument();
 
 		await user.click(submitBtn);
-
-		// 'Please check your email and reset your password using the link. You may need to check your spam/junk folder.';
 
 		await waitFor(async () => {
 			expect(

@@ -18,8 +18,6 @@ function App() {
 	useEffect(() => {
 		const firstLogin = localStorage.getItem('firstlogin');
 
-		// console.log('app token compo run');
-
 		if (firstLogin) {
 			const refreshToken = async () => {
 				// eslint-disable-next-line

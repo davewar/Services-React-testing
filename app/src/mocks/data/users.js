@@ -1,6 +1,6 @@
 export const TESTUSERS = [
 	{
-		id: 0,
+		_id: 0,
 		name: 'I am basic user',
 		email: 'testdw@testmocha.com', //basic user
 		validated: 'true',
@@ -11,7 +11,7 @@ export const TESTUSERS = [
 		updatedAt: '2023-02-12T18:28:46.480+00:00',
 	},
 	{
-		id: 1,
+		_id: 1,
 		name: 'I am editor test user',
 		email: '1testdw@testmocha.com', //editor
 		validated: 'true',
@@ -22,7 +22,7 @@ export const TESTUSERS = [
 		updatedAt: '2023-02-12T18:28:46.480+00:00',
 	},
 	{
-		id: 2,
+		_id: 2,
 		name: 'I am admin user',
 		email: '2testdw@testmocha.com', //admin user
 		validated: 'true',
@@ -36,7 +36,7 @@ export const TESTUSERS = [
 
 export const CUSTOMERS = [
 	{
-		_id: 11,
+		_id: '11',
 		name: 'newnameforCustomer1',
 		businessName: 'bus1',
 		email: 'customer1@gmail.com',
@@ -54,7 +54,7 @@ export const CUSTOMERS = [
 		updatedAt: '2023-02-12T18:28:46.480+00:00',
 	},
 	{
-		_id: 12,
+		_id: '12',
 		name: 'newnameforCustomer2',
 		businessName: 'bus2',
 		email: 'customer2@gmail.com',
@@ -75,7 +75,7 @@ export const CUSTOMERS = [
 
 export const AMENDCUSTOMER1 = [
 	{
-		_id: 11,
+		_id: '11',
 		name: 'newnameforCustomer1AMEND',
 		businessName: 'bus1AMEND',
 		email: 'customer1AMEND@gmail.com',

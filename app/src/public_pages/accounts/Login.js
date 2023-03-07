@@ -37,7 +37,6 @@ const Login = () => {
 		// 	setPassword(e.target.value);
 
 		// 	let pwdValid = !pwdRegex.test(password);
-		// 	console.log(pwdValid);
 
 		// 	!pwdRegex.test(password)
 		// 		? setPasswordErr(

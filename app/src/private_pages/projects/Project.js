@@ -167,7 +167,6 @@ const Project = (props) => {
 					setComments('');
 					setprojectCompleted(false);
 					setPrice('');
-
 					scrollToTop();
 				}
 			} catch (err) {
@@ -248,6 +247,7 @@ const Project = (props) => {
 							name='description'
 							autoComplete='off'
 							value={description}
+							placeholder='Please enter project requirements....'
 							onChange={(e) => handleChange(e, 'description')}
 						></textarea>
 						{descriptionErr && (
@@ -265,6 +265,7 @@ const Project = (props) => {
 							name='comments'
 							autoComplete='off'
 							value={comments}
+							placeholder='Please add commments...'
 							onChange={(e) => handleChange(e, 'comments')}
 						></textarea>
 						{commentsErr && (

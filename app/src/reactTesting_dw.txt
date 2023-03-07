@@ -39,24 +39,11 @@ Download the chrome playground extension or use https://testing-playground.com/ 
 
 https://testing-library.com/docs/ecosystem-user-event
 
-
-
-
-
-
-
-
-https://www.ivstudio.com/blog/react-testing-library-common-patterns
-
-
-https://egghead.io/lessons/react-manage-state-in-a-react-component-with-the-usestate-hook
-
-
-0@gmail.com
-
-// https://kentcdodds.com/blog/stop-mocking-fetch
-
-
-COMMON MISTAKES
-
+COMMON MISTAKES:
 https://kentcdodds.com/blog/common-mistakes-with-react-testing-library
+
+find = async
+query = use when item not to befound
+get = all other
+
+screen.debug() // screen.debug(element)

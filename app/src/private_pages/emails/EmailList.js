@@ -30,7 +30,6 @@ const EmailList = () => {
 		let getEmails = async () => {
 			try {
 				let { data, response } = await callFetch(url, options);
-				// console.log(data, response);
 
 				if (response.status === 403 && data.errors) {
 					setLoading(false);

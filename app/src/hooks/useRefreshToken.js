@@ -15,10 +15,10 @@ const useRefreshToken = () => {
 			});
 
 			const data = await res.json();
-			// console.log('data', data);
 
 			if (data.accesstoken) {
 				setAccessToken(data.accesstoken);
+
 				return data.accesstoken;
 			} else {
 				// log user out as token expired!

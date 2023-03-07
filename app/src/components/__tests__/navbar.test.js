@@ -16,7 +16,7 @@ const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
 	);
 };
 
-describe.skip('.Navbar', () => {
+describe('.Navbar', () => {
 	test('Component renders correctly if user NOT logged in', async () => {
 		user.setup();
 

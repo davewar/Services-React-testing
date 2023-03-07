@@ -19,7 +19,6 @@ const usePrivateFetch = () => {
 		if (response.status === 403) {
 			// Does a valid cookie exist - if yes, get a new access token & update state
 			let newToken = await refresh();
-			// console.log('new access Token');
 
 			if (newToken) {
 				//run fetch again
@@ -35,10 +34,9 @@ const usePrivateFetch = () => {
 
 				response = newResponse;
 				data = newData;
-				// console.log('newResponse', data, response);
+
 				return { data, response };
 			} else {
-				// console.log('cookie expired');
 			}
 		}
 		return { data, response };

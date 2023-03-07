@@ -18,7 +18,6 @@ module.exports.getAllUsers_get = async (req, res) => {
 		const customers = await Customer.find();
 
 		if (customers?.length === 0) {
-			// console.log('here');
 			return res.status(400).json({ msg: 'No customers found' });
 		}
 
@@ -33,11 +32,8 @@ module.exports.getAllUsers_get = async (req, res) => {
 // @access Private
 
 module.exports.signup_post = async (req, res) => {
-	// console.log(req.body);
 	try {
 		let { name, businessName, email, telephone, address, createdBy } = req.body;
-
-		// console.log(name, businessName, email, telephone, address);
 
 		//form validations
 		if (!name || !email || !telephone || !address)
@@ -102,7 +98,6 @@ module.exports.updateUser_put = async (req, res) => {
 	let { name, businessName, email, telephone, address } = req.body;
 
 	if (!name || !email || !telephone || !address) {
-		console.log('ehre');
 		return res.status(400).json({ errors: 'Missing required fields' });
 	}
 

@@ -12,7 +12,6 @@ const PageSeo = () => {
 	useEffect(() => {
 		let newSeoPath = location.pathname;
 		setSeoPage(newSeoPath);
-		// console.log(newSeoPath);
 	}, [location]);
 
 	return (

@@ -62,7 +62,6 @@ const Customer = ({ customer, ...rest }) => {
 		}
 
 		// 	let pwdValid = !pwdRegex.test(password);
-		// 	console.log(pwdValid);
 
 		// 	!pwdRegex.test(password)
 		// 		? setPasswordErr(

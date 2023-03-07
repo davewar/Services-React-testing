@@ -3,7 +3,7 @@ import Dashboard from './Dashboard';
 import { BrowserRouter } from 'react-router-dom';
 import { UserContext } from '../contexts/user';
 import '@testing-library/jest-dom';
-import { HelmetProvider } from 'react-helmet-async'; //meta title data -see Seo component.
+import { HelmetProvider } from 'react-helmet-async';
 
 const mycustomRender = (ui, { providerProps, ...renderOptions }) => {
 	return render(
@@ -20,7 +20,7 @@ let providerProps = {
 	user: 'Dave',
 };
 
-describe.skip('.Dashboard', () => {
+describe('.Dashboard', () => {
 	test('Component renders correctly with user prop name', async () => {
 		mycustomRender(<Dashboard />, { providerProps });
 

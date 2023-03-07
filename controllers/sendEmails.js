@@ -5,8 +5,6 @@ require('dotenv').config();
 // https://www.freecodecamp.org/news/use-nodemailer-to-send-emails-from-your-node-js-server/
 
 const main = (emailaddress, url, msg, text, html) => {
-	//  console.log(emailaddress, url,msg)
-
 	// create reusable transporter object using the default SMTP transport
 	let transporter = nodemailer.createTransport({
 		service: 'gmail',
@@ -28,8 +26,6 @@ const main = (emailaddress, url, msg, text, html) => {
 	transporter.sendMail(mailOptions, function (err, data) {
 		if (err) {
 			console.log(err.message);
-		} else {
-			// console.log('email sent');
 		}
 	});
 };

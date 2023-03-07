@@ -9,11 +9,6 @@ const RequireAuth = ({ allowedRoles }) => {
 
 	const location = useLocation();
 
-	// console.log('is the users role found in the allowed roles ? ', found);
-	// console.log('Allowed roles are: ', allowedRoles);
-	// console.log('access =', accessToken);
-	// console.log('role =', role);
-
 	if (accessToken && found) {
 		return <Outlet />;
 	}

@@ -2,7 +2,7 @@ import { screen, within } from '@testing-library/react';
 import App from './App';
 import { customRender } from './myCustomRender';
 
-describe.skip('App', () => {
+describe('App', () => {
 	test('Component renders correctly', async () => {
 		customRender(<App />);
 

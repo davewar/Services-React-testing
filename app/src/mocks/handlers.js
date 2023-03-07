@@ -4,14 +4,10 @@ import { rest } from 'msw';
 // export const handlers = [...loginHandlers, ...contactformHandlers];
 
 import { TESTUSERS, CUSTOMERS } from './data/users';
-
-// https://github.com/mswjs/headers-polyfill
-// https://github.com/kentcdodds/bookshelf/blob/2e8f1af68e2030de5b89550e933773d6993c0492/src/test/server/server-handlers.js
+import { products } from './data/projects';
 
 export const handlers = [
 	rest.post('http://localhost/user/reset', async (req, res, ctx) => {
-		// console.log('user/reset called via msw');
-
 		let { email, accesstoken } = await req.json();
 
 		// no user found
@@ -48,8 +44,6 @@ export const handlers = [
 	}),
 
 	rest.post('http://localhost:5000/api/email/', (req, res, ctx) => {
-		// console.log('api/email hit via msw');
-
 		return res(
 			ctx.json({
 				msg: 'Thank you for your enquiry. We will be in contact with you shortly.',
@@ -58,8 +52,6 @@ export const handlers = [
 	}),
 
 	rest.post('http://localhost:5000/user/login', async (req, res, ctx) => {
-		// console.log('user/login hit via msw handler');
-
 		let { password, email } = await req.json();
 
 		let userid = TESTUSERS[0].id;
@@ -111,9 +103,6 @@ export const handlers = [
 	}),
 
 	rest.get('http://localhost/user/infor', async (req, res, ctx) => {
-		// console.log('user/infor called via msw');
-
-		let userid = TESTUSERS[0].id;
 		let username = TESTUSERS[0].name;
 		let userrole = TESTUSERS[0].role;
 
@@ -123,19 +112,9 @@ export const handlers = [
 				user: { name: username, role: userrole },
 			})
 		);
-
-		// if no user
-
-		// return res(
-		// 	ctx.json({
-		// 		msg: 'User does not exist.',
-		// 	})
-		// );
 	}),
 
 	rest.post('http://localhost/user/forgot', async (req, res, ctx) => {
-		// console.log('user/forgot hit via msw handler');
-
 		let { email } = await req.json();
 
 		if (email !== TESTUSERS[0].email) {
@@ -158,8 +137,6 @@ export const handlers = [
 	}),
 
 	rest.post('http://localhost/user/register', async (req, res, ctx) => {
-		// console.log('user/register called via msw');
-
 		let { email } = await req.json();
 
 		if (email !== TESTUSERS[0].email) {
@@ -186,8 +163,6 @@ export const handlers = [
 	rest.post(
 		'http://localhost:5000/api/customer/create',
 		async (req, res, ctx) => {
-			// console.log('PRIVATE ROUTE, customer/create called via msw');
-
 			let { email } = await req.json();
 
 			if (email === CUSTOMERS[0].email) {
@@ -212,7 +187,6 @@ export const handlers = [
 
 	//private ClientEdit.js
 	rest.get('http://localhost:5000/api/customer', async (req, res, ctx) => {
-		// console.log('PRIVATE ROUTE, GET ClientEdit.js api/customer called via msw');
 		return res(
 			ctx.status(200),
 			ctx.json({
@@ -221,14 +195,10 @@ export const handlers = [
 		);
 	}),
 
-	//private ClientEdit.js
+	//private ClientEdit.js edit customer
 	rest.put(
 		'http://localhost:5000/api/customer/update/11',
 		async (req, res, ctx) => {
-			// console.log(
-			// 	'PRIVATE ROUTE, PUT ClientEdit.js api/customer called via msw'
-			// );
-
 			return res(
 				ctx.status(200),
 				ctx.json({
@@ -237,6 +207,67 @@ export const handlers = [
 			);
 		}
 	),
-];
 
-// GET http://localhost:5000/api/customer    / clientedit.js
+	//private ClientEdit.js delete cust
+	rest.delete(
+		'http://localhost:5000/api/customer/delete/11',
+		async (req, res, ctx) => {
+			return res(
+				ctx.status(200),
+				ctx.json({
+					msg: 'Customer deleted',
+				})
+			);
+		}
+	),
+
+	//Private Project Create get employees
+	rest.get('http://localhost:5000/user', async (req, res, ctx) => {
+		let users = TESTUSERS;
+
+		return res(
+			ctx.status(200),
+			ctx.json({
+				msg: users,
+			})
+		);
+	}),
+
+	// PRIVATE - Project.js via Projectcreate.js
+	rest.post(
+		'http://localhost:5000/api/product/create',
+		async (req, res, ctx) => {
+			return res(
+				ctx.status(200),
+				ctx.json({
+					msg: 'New project added',
+				})
+			);
+		}
+	),
+
+	// private Project list , get list of all projects
+	rest.get('http://localhost:5000/api/product', async (req, res, ctx) => {
+		return res(
+			ctx.status(200),
+			ctx.json({
+				msg: products,
+			})
+		);
+	}),
+
+	// Public - App testing userefresh hook
+	rest.get(
+		'http://localhost:5000/user/refresh_token',
+		async (req, res, ctx) => {
+			let accesstoken = '987654321';
+
+			return res(
+				ctx.status(200),
+				ctx.json({
+					accesstoken,
+				})
+			);
+		}
+	),
+];

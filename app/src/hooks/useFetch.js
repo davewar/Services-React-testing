@@ -10,6 +10,7 @@ const useFetch = () => {
 	const customFetch = async (url, options = null) => {
 		try {
 			const res = await fetch(`${baseUrl}${url}`, options);
+
 			const data = await res.json();
 
 			if (data.errors) {
@@ -21,6 +22,7 @@ const useFetch = () => {
 			}
 		} catch (err) {
 			console.log(err);
+
 			setLoading(true);
 			setError('Server Issue. Please try later');
 		}

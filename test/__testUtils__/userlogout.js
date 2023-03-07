@@ -16,9 +16,6 @@ const logOutTest = (e, pw) => {
 				.set('content-type', 'application/json')
 				.end((err, res) => {
 					if (err) done(err);
-					// assert.equal(res.status, 202);
-					// assert.equal(res.body.msg, 'logged out');
-					// console.log('user loged out has been run');
 
 					done();
 				});

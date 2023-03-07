@@ -41,8 +41,6 @@ const UserProvider = ({ children }) => {
 
 					const data = await res.json();
 
-					// console.log('GETUSER - role + name', data);
-
 					if (data?.user) {
 						setIsLogged(true);
 						setUser(data.user.name);

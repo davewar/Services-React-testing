@@ -39,7 +39,6 @@ const ProjectsCreate = () => {
 		let getCustomers = async () => {
 			try {
 				let { data, response } = await callFetch(url, options);
-				// console.log(data, response);
 
 				if (response.status === 403 && data.errors) {
 					setLoading(false);
@@ -176,10 +175,12 @@ const ProjectsCreate = () => {
 					<select
 						required
 						className='form-control amend-customer-dropdown'
+						data-testid='combobox1'
 						value={customerSelected}
 						onChange={(e) => handleCustomer(e)}
+						key='select-1'
 					>
-						<option value='Please select customer'>
+						<option key='customer' value='Please select customer'>
 							---select customer---
 						</option>
 
@@ -206,8 +207,10 @@ const ProjectsCreate = () => {
 						className='form-control amend-customer-dropdown'
 						value={userSelected}
 						onChange={(e) => handleUser(e)}
+						data-testid='combobox2'
+						key='select-22'
 					>
-						<option value='Please select employee'>
+						<option key='employee' value='Please select employee'>
 							---select employee---
 						</option>
 

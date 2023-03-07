@@ -11,7 +11,7 @@ const MockFooter = () => {
 	);
 };
 
-describe.skip('.Footer', () => {
+describe('.Footer', () => {
 	test('Component renders correctly', async () => {
 		user.setup();
 
@@ -33,7 +33,5 @@ describe.skip('.Footer', () => {
 		expect(copyright).toBeInTheDocument();
 
 		expect(contactBtn).toBeInTheDocument();
-
-		// screen.debug(contactBtn);
 	});
 });

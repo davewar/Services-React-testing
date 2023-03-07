@@ -78,7 +78,6 @@ const ProjectAmend = () => {
 						let sum = 0.0;
 						// eslint-disable-next-line
 						let paidSofar = data.msg[0].payments.map((i) => {
-							// console.log(typeof i.paidAmount);
 							let num = parseFloat(i.paidAmount);
 							return (sum += num);
 						});

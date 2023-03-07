@@ -4,7 +4,7 @@ let should = chai.should();
 const chaiHttp = require('chai-http');
 const server = require('../server');
 const { assert, use } = require('chai');
-const { log } = require('console');
+
 const { v4: uuidv4 } = require('uuid');
 const logOutTest = require('./__testUtils__/userlogout');
 const LOGINS = require('./__testUtils__/logins');
@@ -359,7 +359,7 @@ describe('* Customer private view pages *', () => {
 				.set('Authorization', `Bearer ${accessToken}`)
 				.end((err, res) => {
 					if (err) done(err);
-					// console.log('HHHHH', res.body);
+
 					assert.equal(res.status, 202);
 
 					assert.equal(res.body, 'Project deleted');
@@ -584,7 +584,7 @@ describe('* Customer private view pages *', () => {
 				.set('Authorization', `Bearer ${accessToken}`)
 				.end((err, res) => {
 					if (err) done(err);
-					// console.log('HHHHH', res.body);
+
 					assert.equal(res.status, 403);
 
 					assert.equal(res.body.errors, 'Access denied 2');

@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 	useParams: () => mockUseParams(),
 }));
 
-describe.skip('Password Reset', () => {
+describe('Password Reset', () => {
 	test('Component renders correctly, if user does exist', async () => {
 		mockUseParams.mockReturnValue({
 			id: '123',

@@ -1,11 +1,15 @@
-## Back End Database Testing
+## Front End React Testing
 
-- Mocka
-- Chai
-- Chai-http
+- React Testing Library
+- Mock Service Worker
+- Jest
 
-##### 91 Tests found in './test' folder - All Pass.
+cd app > npm test
+
+##### Test Suites: 24 passed, 24 total
+
+##### Tests: 47 passed, 47 total
 
 Summary testing screen print:
 
-https://github.com/davewar/Chai-testing-backend/blob/main/zz_Mocka_screen_shot_testing.pdf
+https://github.com/davewar/Services-React-testing/blob/main/zz_ReactTesting_screen_shot.pdf
